@@ -1,0 +1,8 @@
+{
+  "name": "Arabic Scrabble lexicon",
+  "version": "seed-1",
+  "note": "Seed lexicon authored for this project. Not a complete dictionary; see docs/DICTIONARY.md.",
+  "files": [
+    { "id": "core", "tier": "core", "path": "core.txt", "license": "MIT (project)", "source": "hand-written seed" }
+  ]
+}

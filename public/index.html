@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>سكرابل عربي</title>
+  <meta name="description" content="لعبة سكرابل بالعربية للاعبين اثنين، مع تحقق من الكلمات، وتعمل بدون إنترنت.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0c4a3c">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="سكرابل">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="/js/theme-init.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="modulepreload" href="/js/main.js">
+</head>
+<body>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.8l1.6 2.3 2.7-.6.9 2.6 2.6.9-.6 2.7L21.5 12l-2.3 1.6.6 2.7-2.6.9-.9 2.6-2.7-.6L12 21.2l-1.6-2.3-2.7.6-.9-2.6-2.6-.9.6-2.7L2.5 12l2.3-1.6-.6-2.7 2.6-.9.9-2.6 2.7.6z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.1-2.5 3.8M12 17.2v.1"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-install" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7L4.5 11.5 9 16M5 11.5h9.5a5 5 0 0 1 0 10H11"/></symbol>
+  <symbol id="i-recall" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.4-5.5M4.5 4.5v4h4"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13l-3-3M19 16H6l3 3"/></symbol>
+  <symbol id="i-pass" viewBox="0 0 24 24"><path d="M6 5l7 7-7 7M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M4 7h3.5c5 0 4.5 10 9.5 10H20M4 17h3.5c1.6 0 2.700-.9 3.600-2.300M20 7h-3c-1.600 0-2.700.9-3.600 2.300M17.500 4.500L20 7l-2.500 2.500M17.500 14.500L20 17l-2.500 2.500"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <h1 class="brand"><span class="brand-mark" aria-hidden="true">س</span><span>سكرابل عربي</span></h1>
+    <div class="topbar-actions" role="toolbar" aria-label="القائمة">
+      <button class="icon-btn" id="btn-install" type="button" hidden aria-label="تثبيت التطبيق" title="تثبيت التطبيق"><svg class="ico"><use href="#i-install"/></svg></button>
+      <button class="icon-btn" id="btn-theme" type="button" aria-pressed="false" aria-label="الوضع الداكن" title="الوضع الداكن"><svg class="ico ico-sun"><use href="#i-sun"/></svg><svg class="ico ico-moon"><use href="#i-moon"/></svg></button>
+      <button class="icon-btn" id="btn-help" type="button" aria-label="طريقة اللعب" title="طريقة اللعب"><svg class="ico"><use href="#i-help"/></svg></button>
+      <button class="icon-btn" id="btn-settings" type="button" aria-label="الإعدادات" title="الإعدادات"><svg class="ico"><use href="#i-gear"/></svg></button>
+      <button class="icon-btn" id="btn-new" type="button" aria-label="لعبة جديدة" title="لعبة جديدة"><svg class="ico"><use href="#i-plus"/></svg></button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <section class="players" aria-label="اللاعبون">
+      <article class="player" id="p1" data-player="1">
+        <div class="player-head"><span class="player-name">اللاعب الأول</span><span class="turn-badge" hidden>دوره</span></div>
+        <div class="player-stats"><span class="score" aria-label="نقاط اللاعب الأول">0</span><span class="clock"><svg class="ico ico-s"><use href="#i-clock"/></svg><span class="clock-text">25:00</span></span></div>
+        <div class="mini-rack" hidden></div>
+      </article>
+      <article class="player" id="p2" data-player="2">
+        <div class="player-head"><span class="player-name">اللاعب الثاني</span><span class="turn-badge" hidden>دوره</span></div>
+        <div class="player-stats"><span class="score" aria-label="نقاط اللاعب الثاني">0</span><span class="clock"><svg class="ico ico-s"><use href="#i-clock"/></svg><span class="clock-text">25:00</span></span></div>
+        <div class="mini-rack" hidden></div>
+      </article>
+    </section>
+
+    <section class="board-area" aria-label="لوح اللعب">
+      <div class="board" id="board" role="grid" aria-label="لوح السكرابل 15 × 15" aria-rowcount="15" aria-colcount="15"></div>
+    </section>
+
+    <section class="panel" aria-label="حركتك">
+      <div class="info-row">
+        <div class="msgbox">
+          <div class="preview" id="preview" aria-live="off"></div>
+          <div class="status" id="status" role="status" aria-live="polite" aria-atomic="true"></div>
+        </div>
+        <div class="bag" id="bag" aria-label="القطع المتبقية في الكيس"><span class="bag-n">0</span><span class="bag-l">في الكيس</span></div>
+      </div>
+      <div class="rack-wrap">
+        <div class="rack" id="rack" role="group" aria-label="رف القطع"></div>
+      </div>
+      <div class="controls">
+        <div class="controls-main">
+          <button class="btn btn-primary" id="btn-submit" type="button" disabled><svg class="ico"><use href="#i-check"/></svg><span>احتساب الحركة</span></button>
+          <button class="btn btn-quiet" id="btn-recall" type="button" disabled><svg class="ico"><use href="#i-recall"/></svg><span>استرجاع</span></button>
+        </div>
+        <div class="controls-sub">
+          <button class="btn btn-tool" id="btn-swap" type="button"><svg class="ico"><use href="#i-swap"/></svg><span>تبديل</span></button>
+          <button class="btn btn-tool" id="btn-pass" type="button"><svg class="ico"><use href="#i-pass"/></svg><span>تمرير</span></button>
+          <button class="btn btn-tool" id="btn-shuffle" type="button"><svg class="ico"><use href="#i-shuffle"/></svg><span>خلط</span></button>
+          <button class="btn btn-tool" id="btn-undo" type="button" disabled><svg class="ico"><use href="#i-undo"/></svg><span>تراجع</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span class="toast-text"></span><button class="btn btn-small" type="button" hidden></button>
+</div>
+
+<!-- Dialogs: native <dialog> gives focus trapping, Esc and a backdrop -->
+<dialog id="dlg-confirm" aria-labelledby="dlg-confirm-title">
+  <form method="dialog" class="dlg">
+    <h2 id="dlg-confirm-title"></h2><p class="dlg-body"></p>
+    <div class="dlg-actions"><button class="btn btn-quiet" value="cancel">إلغاء</button><button class="btn btn-danger" value="ok" autofocus></button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-blank" aria-labelledby="dlg-blank-title">
+  <form method="dialog" class="dlg">
+    <h2 id="dlg-blank-title">اختر حرفاً للقطعة الفارغة</h2>
+    <p class="dlg-body">تمثّل القطعة الفارغة الحرف الذي تختاره، وقيمتها تبقى صفراً.</p>
+    <div class="letter-grid" id="blank-letters"></div>
+    <div class="dlg-actions"><button class="btn btn-quiet" value="cancel">إلغاء</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-unknown" aria-labelledby="dlg-unknown-title">
+  <form method="dialog" class="dlg">
+    <h2 id="dlg-unknown-title">كلمات غير موجودة في القاموس</h2>
+    <p class="dlg-body" id="unknown-intro"></p>
+    <ul class="word-list" id="unknown-list"></ul>
+    <p class="dlg-note" id="unknown-note"></p>
+    <div class="dlg-actions dlg-actions-wrap">
+      <button class="btn btn-quiet" value="cancel" autofocus>رجوع لتعديل الحركة</button>
+      <button class="btn btn-primary" value="accept">اعتماد الحركة</button>
+      <button class="btn btn-tool" value="add">اعتماد وإضافة للقاموس الخاص</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-settings" aria-labelledby="dlg-settings-title">
+  <form method="dialog" class="dlg dlg-wide" id="settings-form">
+    <h2 id="dlg-settings-title">الإعدادات</h2>
+    <fieldset><legend>المظهر</legend>
+      <label class="opt"><input type="radio" name="theme" value="system"> حسب النظام</label>
+      <label class="opt"><input type="radio" name="theme" value="light"> فاتح</label>
+      <label class="opt"><input type="radio" name="theme" value="dark"> داكن</label>
+    </fieldset>
+    <fieldset><legend>قاموس الفصحى</legend>
+      <label class="opt"><input type="radio" name="policy" value="expanded"> <span><b>موسّع</b> — الكلمات المسجّلة وما يُشتق منها بقواعد الصرف المدعومة (ال، الضمائر، المثنى، الجمع السالم، تصريف الأفعال السالمة)</span></label>
+      <label class="opt"><input type="radio" name="policy" value="strict"> <span><b>صارم</b> — الكلمات المسجّلة في القاموس فقط</span></label>
+      <p class="dlg-note" id="dict-info"></p>
+    </fieldset>
+    <fieldset><legend>عند كلمة غير موجودة في القاموس</legend>
+      <label class="opt"><input type="radio" name="unknown" value="ask"> <span><b>اسأل اللاعبين</b> — يظهر تنبيه ويقرّر اللاعبان قبول الحركة أو تعديلها</span></label>
+      <label class="opt"><input type="radio" name="unknown" value="block"> <span><b>امنع الحركة</b> — لا تُحتسب الحركة إلا إذا وُجدت كل كلماتها</span></label>
+    </fieldset>
+    <fieldset><legend>الرفوف</legend>
+      <label class="opt"><input type="checkbox" name="showOpponentRack"> إظهار رف اللاعب الآخر</label>
+    </fieldset>
+    <fieldset><legend>قاموسي الخاص</legend>
+      <label for="custom-words" class="dlg-note">كلمة في كل سطر. تُقبل في الوضعين، وتُحفظ على هذا الجهاز فقط.</label>
+      <textarea id="custom-words" rows="4" spellcheck="false" dir="rtl"></textarea>
+      <p class="dlg-note" id="custom-count"></p>
+    </fieldset>
+    <div class="dlg-actions"><button class="btn btn-primary" value="close" autofocus>تم</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-help" aria-labelledby="dlg-help-title">
+  <form method="dialog" class="dlg dlg-wide">
+    <h2 id="dlg-help-title">طريقة اللعب</h2>
+    <ul class="help-list">
+      <li>اسحب قطعة من الرف إلى اللوح، أو اضغط القطعة ثم المربع. اضغط قطعة موضوعة لإعادتها.</li>
+      <li>الحركة الأولى تمرّ بالنجمة في الوسط. وتُقرأ الكلمات الأفقية من اليمين إلى اليسار والعمودية من الأعلى إلى الأسفل.</li>
+      <li>تُحسب كل كلمة تتكوّن، وتُضاف ٥٠ نقطة عند استعمال القطع السبع كلها.</li>
+      <li>الساعة ٢٥ دقيقة لكل لاعب وتبدأ بعد أول حركة. عند النهاية تُخصم قيمة القطع المتبقية وتُضاف دقائق الوقت المتبقي.</li>
+      <li>القاموس الحالي <b>تجريبي</b> وصغير، لذلك قد تظهر كلمات صحيحة على أنها «غير موجودة». التنبيه ليس حكماً نهائياً على الكلمة.</li>
+    </ul>
+    <h3>المربعات</h3>
+    <div class="legend" id="legend"></div>
+    <div class="dlg-actions"><button class="btn btn-primary" value="close" autofocus>حسناً</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-over" aria-labelledby="dlg-over-title">
+  <form method="dialog" class="dlg">
+    <h2 id="dlg-over-title">انتهت اللعبة</h2>
+    <p class="dlg-body" id="over-winner"></p>
+    <table class="over-table"><caption class="sr-only">النتيجة النهائية</caption>
+      <thead><tr><th scope="col">اللاعب</th><th scope="col">القطع المتبقية</th><th scope="col">الوقت</th><th scope="col">النتيجة</th></tr></thead>
+      <tbody id="over-rows"></tbody></table>
+    <div class="dlg-actions"><button class="btn btn-quiet" value="close">عرض اللوح</button><button class="btn btn-primary" value="new" autofocus>لعبة جديدة</button></div>
+  </form>
+</dialog>
+
+<noscript><p class="noscript">تحتاج اللعبة إلى تفعيل JavaScript.</p></noscript>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
